@@ -41,7 +41,11 @@
 <form class="form-inline">
   <ul>
     <li ng-repeat="temp in temperatures">
-      <input type="number" class="form-control" ng-model="temp.degree" style="width: 5em;" ng-change="saveTemp(temp)"/>
+      <div class="input-group">
+        <input type="number" class="form-control" ng-model="temp.degree" style="width: 5em;" ng-change="saveTemp(temp)"/>
+        <span class="input-group-addon" id="degree">&deg;</span>
+      </div>
+
       <span>(id: {{temp.id}})</span>
     </li>
   </ul>
