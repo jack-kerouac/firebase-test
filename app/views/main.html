@@ -1,1 +1,19 @@
-Hello Firebase!
+<h1>Hello Firebase!</h1>
+
+<h2>Times</h2>
+<ul>
+  <li ng-repeat="time in schedule.times">
+    <strong>{{time.start}} &mdash; {{time.end}}</strong>: {{ temp(schedule, time.temperatureId) }}&deg; (id:
+    {{time.temperatureId}})
+  </li>
+</ul>
+
+<h2>Temperatures</h2>
+<ul>
+  <li ng-repeat="temp in schedule.temperatures">
+    <input type="number" ng-model="temp.degree"/>
+  </li>
+</ul>
+
+<h2>debug</h2>
+<pre>{{schedule | json}}</pre>
