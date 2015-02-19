@@ -37,6 +37,11 @@ angular.module('firebaseTestApp')
       $scope.times.$remove(time);
     };
 
+
+    $scope.saveTemp = function (temp) {
+      $scope.temperatures.$save(temp);
+    };
+
     $scope.login = function () {
       var ref = new Firebase("https://radiant-fire-9056.firebaseio.com/");
       var auth = $firebaseAuth(ref);
