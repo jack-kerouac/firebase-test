@@ -22,4 +22,22 @@ angular.module('firebaseTestApp')
     $scope.temp = function (schedule, tempId) {
       return _.findWhere(schedule.temperatures, {id: tempId}).degree;
     };
+
+
+    $scope.newTime = {
+      start: '18:00',
+      end: '22:00'
+    };
+    $scope.addTime = function (newTimeData) {
+      var newTime = {
+        start: newTimeData.start,
+        end: newTimeData.end,
+        temperatureId: newTimeData.tempId
+      };
+      $scope.schedule.times.push(newTime);
+    };
+
+    $scope.removeTime = function (time) {
+      _.pull($scope.schedule.times, time);
+    };
   });

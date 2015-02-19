@@ -3,10 +3,33 @@
 <h2>Times</h2>
 <ul>
   <li ng-repeat="time in schedule.times">
-    <strong>{{time.start}} &mdash; {{time.end}}</strong>: {{ temp(schedule, time.temperatureId) }}&deg; (id:
+    <strong>{{time.start}} &mdash; {{time.end}}</strong>:
+    <span>
+    {{ temp(schedule, time.temperatureId) }}&deg; (id:
     {{time.temperatureId}})
+  </span>
+  <button class="btn btn-danger" ng-click="removeTime(time)">remove</button>
   </li>
 </ul>
+
+<form class="form-inline" ng-submit="addTime(newTime)">
+  <div class="form-group">
+    <label for="startInput">Start</label>
+    <input type="text" class="form-control" id="startInput" ng-model="newTime.start" style="width: 5em;">
+  </div>
+  <div class="form-group">
+    <label for="endInput">End</label>
+    <input type="text" class="form-control" id="endInput" ng-model="newTime.end" style="width: 5em;">
+  </div>
+  <div class="form-group">
+    <label for="tempSelect">Temperature</label>
+    <select class="form-control" id="tempSelect" ng-options="temp.id as temp.degree for temp in schedule.temperatures" ng-model="newTime.tempId">
+      <option value="">-- choose temp --</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-default">Add time</button>
+</form>
+
 
 <h2>Temperatures</h2>
 <ul>
