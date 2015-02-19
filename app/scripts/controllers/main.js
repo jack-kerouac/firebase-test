@@ -12,7 +12,7 @@ angular.module('firebaseTestApp')
     var temperatures = $firebase(new $window.Firebase('https://radiant-fire-9056.firebaseio.com/temperatures'));
     $scope.temperatures = temperatures.$asArray();
 
-    var times = $firebase(new $window.Firebase('https://radiant-fire-9056.firebaseio.com/times'));
+    var times = $firebase(new $window.Firebase('https://radiant-fire-9056.firebaseio.com/times').orderByChild('start'));
     $scope.times = times.$asArray();
 
     $scope.temp = function (temperatures, tempId) {
