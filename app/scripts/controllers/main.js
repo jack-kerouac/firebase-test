@@ -9,18 +9,14 @@
  */
 angular.module('firebaseTestApp')
   .controller('MainCtrl', function ($scope, $firebase) {
-    var ref = new Firebase('https://radiant-fire-9056.firebaseio.com/');
+    var temperatures = $firebase(new Firebase('https://radiant-fire-9056.firebaseio.com/temperatures'));
+    $scope.temperatures = temperatures.$asArray();
 
-    // create an AngularFire reference to the data
-    var sync = $firebase(ref);
+    var times = $firebase(new Firebase('https://radiant-fire-9056.firebaseio.com/times'));
+    $scope.times = times.$asArray();
 
-    // download the data into a local object
-    var syncObject = sync.$asObject();
-    syncObject.$bindTo($scope, 'schedule');
-
-
-    $scope.temp = function (schedule, tempId) {
-      return _.findWhere(schedule.temperatures, {id: tempId}).degree;
+    $scope.temp = function (temperatures, tempId) {
+      return _.findWhere(temperatures, {id: tempId}).degree;
     };
 
 
@@ -34,10 +30,10 @@ angular.module('firebaseTestApp')
         end: newTimeData.end,
         temperatureId: newTimeData.tempId
       };
-      $scope.schedule.times.push(newTime);
+      $scope.times.$add(newTime);
     };
 
     $scope.removeTime = function (time) {
-      _.pull($scope.schedule.times, time);
+      $scope.times.$remove(time);
     };
   });

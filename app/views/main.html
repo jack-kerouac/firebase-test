@@ -2,10 +2,10 @@
 
 <h2>Times</h2>
 <ul>
-  <li ng-repeat="time in schedule.times">
+  <li ng-repeat="time in times">
     <strong>{{time.start}} &mdash; {{time.end}}</strong>:
     <span>
-    {{ temp(schedule, time.temperatureId) }}&deg; (id:
+    {{ temp(temperatures, time.temperatureId) }}&deg; (id:
     {{time.temperatureId}})
   </span>
   <button class="btn btn-danger" ng-click="removeTime(time)">remove</button>
@@ -23,7 +23,7 @@
   </div>
   <div class="form-group">
     <label for="tempSelect">Temperature</label>
-    <select class="form-control" id="tempSelect" ng-options="temp.id as temp.degree for temp in schedule.temperatures" ng-model="newTime.tempId">
+    <select class="form-control" id="tempSelect" ng-options="temp.id as temp.degree for temp in temperatures" ng-model="newTime.tempId">
       <option value="">-- choose temp --</option>
     </select>
   </div>
@@ -33,10 +33,13 @@
 
 <h2>Temperatures</h2>
 <ul>
-  <li ng-repeat="temp in schedule.temperatures">
+  <li ng-repeat="temp in temperatures">
     <input type="number" ng-model="temp.degree"/>
   </li>
 </ul>
 
 <h2>debug</h2>
-<pre>{{schedule | json}}</pre>
+<h3>temperatures</h3>
+<pre>{{temperatures | json}}</pre>
+<h3>times</h3>
+<pre>{{times | json}}</pre>
