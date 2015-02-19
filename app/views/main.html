@@ -1,5 +1,11 @@
 <h1>Hello Firebase!</h1>
 
+<button class="btn btn-info" ng-click="login()">Login with Google</button>
+<div ng-show="authData">
+  <img ng-src="{{authData.google.cachedUserProfile.picture}}" style="width:100px;"/>
+  <pre>{{authData | json}}</pre>
+</div>
+
 <h2>Times</h2>
 <ul>
   <li ng-repeat="time in times">

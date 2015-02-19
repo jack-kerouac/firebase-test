@@ -8,7 +8,7 @@
  * Controller of the firebaseTestApp
  */
 angular.module('firebaseTestApp')
-  .controller('MainCtrl', function ($scope, $firebase) {
+  .controller('MainCtrl', function ($scope, $firebase, $firebaseAuth) {
     var temperatures = $firebase(new Firebase('https://radiant-fire-9056.firebaseio.com/temperatures'));
     $scope.temperatures = temperatures.$asArray();
 
@@ -35,5 +35,15 @@ angular.module('firebaseTestApp')
 
     $scope.removeTime = function (time) {
       $scope.times.$remove(time);
+    };
+
+    $scope.login = function () {
+      var ref = new Firebase("https://radiant-fire-9056.firebaseio.com/");
+      var auth = $firebaseAuth(ref);
+      auth.$authWithOAuthPopup("google").then(function(authData) {
+        $scope.authData = authData;
+      }).catch(function(error) {
+        console.error("Authentication failed: ", error);
+      });
     };
   });
